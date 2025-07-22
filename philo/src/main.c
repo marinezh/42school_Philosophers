@@ -6,16 +6,29 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:14:53 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/16 15:37:06 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/22 16:02:29 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
  #include <stdlib.h>
 
+ 
+
+//  int is_valid_input(int ac, char **av)
+//  {
+// 	int i = 0;
+// 	while (av[i])
+// 	{
+// 		if(av[i]);
+
+// 	}
+//  }
+
 int main(int ac, char **av)
 {
-	int i = 0;
+	(void)ac;
+	//int i = 0;
 	int number_of_philos = 0;
 	int time_to_die = 0;
 	int time_to_eat = 0;
