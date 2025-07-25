@@ -6,7 +6,7 @@
 #    By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 14:19:08 by mzhivoto          #+#    #+#              #
-#    Updated: 2025/07/22 18:25:17 by mzhivoto         ###   ########.fr        #
+#    Updated: 2025/07/25 20:20:41 by mzhivoto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ COLOUR_BRIGHT_MAGENTA = \033[1;35m
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./includes/ -I./
-#LDFLAGS = -pthread
+LDFLAGS = -lpthread
 
 SRCS_PATH = ./src
 OBJS_PATH = ./obj
