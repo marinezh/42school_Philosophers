@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:14:53 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/27 17:18:14 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/28 18:08:50 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	parse_arguments(int ac, char **av, t_data *data)
 			// number_of_times_each_philosopher_must_eat (optional)
 	else
 		data->must_eat = -1; // -1 indicates no limit
+	
 	// Check for valid values
 	if (data->num_philos <= 0)
 	{
@@ -58,22 +59,49 @@ int	parse_arguments(int ac, char **av, t_data *data)
 		printf("Error: Number of meals must be positive\n");
 		return (0);
 	}
+	printf("XXXXXXXXXXXXXX\n");
+	if (data->time_to_die < data->time_to_eat)
+	{
+		data->time_to_eat = data->time_to_die;
+		//printf("CHECK %d\n", data->time_to_eat);
+	}
+	if (data->time_to_die < data->time_to_sleep)
+	{
+		data->time_to_sleep = data->time_to_die;
+		//printf("CHECK %d\n", data->time_to_sleep);
+	}
+		
 	return (1);
+}
+void philosopher(int id)
+{
+	while(1)
+	{
+		printf("Philosopher %d is thinking.\n", id);
+		sleep(1);
+		printf("Philosopher %d is eating.\n", id);
+		sleep(1);
+		printf("Philosopher %d is sleeping.\n", id);
+		sleep(1);
+	}
 }
 
 int	main(int ac, char **av)
 {
 	//int philo_data[5]; // To store all the parsed values
 	t_data data;
+	memset(&data, 0, sizeof(data));
 	//data = malloc(sizeof(t_data));
 	if (ac == 5 || ac == 6)
 	{
 		if (!parse_arguments(ac, av, &data))
 			return 1;
-		printf("Number of philosophers: %d\n", data.num_philos);
-		printf("Time to die: %d ms\n", data.time_to_die);
-		printf("Time to eat: %d ms\n", data.time_to_eat);
-		printf("Time to sleep: %d ms\n", data.time_to_sleep);
+		if (!init_data(&data))
+			return (1);
+		// printf("Number of philosophers: %d\n", data.num_philos);
+		// printf("Time to die: %d ms\n", data.time_to_die);
+		// printf("Time to eat: %d ms\n", data.time_to_eat);
+		// printf("Time to sleep: %d ms\n", data.time_to_sleep);
 		// if (philo_data[4] != -1)
 		// 	printf("Number of times each philosopher must eat: %d\n",
 		// 		philo_data[4]);
@@ -88,5 +116,11 @@ int	main(int ac, char **av)
 			av[0]);
 		return 1;
 	}
+	//printf("////////////////////////\n");
+	//print_philo_data(&data);
+
+	//free(data);
+	philosopher(1);
+	philosopher(2);
 	return 0;
 }

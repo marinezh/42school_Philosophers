@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:21:12 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/27 16:33:58 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:41:55 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,10 @@ int	is_valid_input(char *str)
 	return (1);
 }
 
+void print_philo_data(t_data *data)
+{
+	printf("philo num - %d\n", data->num_philos);
+	printf("time to die - %d\n", data->time_to_die);
+	printf("time to eat - %d\n", data->time_to_eat);
+	printf("time to sleep - %d\n", data->time_to_sleep);
+}
