@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/28 17:39:31 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/29 14:17:27 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat;
+	int				is_dead; //to check if we have somebody alrady died 1 - dead, 0 - alive
 	long long		start_time;
 	t_fork			*forks;
 	pthread_mutex_t	print_lock;
 	t_philo			*philos;
+	pthread_t		watcher;
 	int				simulation_running;
 }					t_data;
 
