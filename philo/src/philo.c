@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/29 23:18:12 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/29 23:26:35 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void print_status(t_philo *philo, const char *msg)
 {
 	long long timestamp = get_time_ms() - philo->data->start_time;
 	pthread_mutex_lock(&philo->data->print_lock);
-	printf("%lld Philosopher %d %s\n", timestamp, philo->id + 1, msg);
+	 if (!philo->data->is_dead)  // Only print if simulation is still running
+        printf("%lld Philosopher %d %s\n", timestamp, philo->id + 1, msg);
 	pthread_mutex_unlock(&philo->data->print_lock);
 }
 
@@ -24,6 +25,7 @@ void	*philo_routine(void *arg)
 {
 	t_philo	*philo = (t_philo *)arg;
 
+	// Even philosophers wait a bit to avoid deadlock
 	if (philo->id % 2 == 0)
 		ft_usleep(1);
 
@@ -32,9 +34,11 @@ void	*philo_routine(void *arg)
 		print_status(philo, "is thinking");
 
 		pthread_mutex_lock(&philo->left_fork->lock);
-		print_status(philo, "picked up left fork");
-		print_status(philo, "picked up right fork");
+		print_status(philo, "has taken a fork");
+
 		pthread_mutex_lock(&philo->right_fork->lock);
+		print_status(philo, "has taken a fork");
+		
 		
 		philo->last_meal_time = get_time_ms();
 		print_status(philo, "is eating");
