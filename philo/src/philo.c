@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/29 23:26:35 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/29 23:49:28 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void print_status(t_philo *philo, const char *msg)
 	long long timestamp = get_time_ms() - philo->data->start_time;
 	pthread_mutex_lock(&philo->data->print_lock);
 	 if (!philo->data->is_dead)  // Only print if simulation is still running
-        printf("%lld Philosopher %d %s\n", timestamp, philo->id + 1, msg);
+		printf("%lld Philosopher %d %s\n", timestamp, philo->id + 1, msg);
 	pthread_mutex_unlock(&philo->data->print_lock);
 }
 
@@ -39,7 +39,8 @@ void	*philo_routine(void *arg)
 		pthread_mutex_lock(&philo->right_fork->lock);
 		print_status(philo, "has taken a fork");
 		
-		
+		// do i need to add mutex (lock/unlock) to the eating process
+		//  pthread_mutex_lock(&philo->data->meal_lock); ???
 		philo->last_meal_time = get_time_ms();
 		print_status(philo, "is eating");
 		ft_usleep(philo->data->time_to_eat);
@@ -47,6 +48,8 @@ void	*philo_routine(void *arg)
 		pthread_mutex_unlock(&philo->left_fork->lock);
 		pthread_mutex_unlock(&philo->right_fork->lock);
 
+		// TO DO 
+		// add check for must_eat !!!
 		print_status(philo, "is sleeping");
 		ft_usleep(philo->data->time_to_sleep);
 	}
