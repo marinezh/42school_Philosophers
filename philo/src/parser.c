@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:21:12 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/28 15:41:55 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/29 20:50:16 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,56 @@ int	is_valid_input(char *str)
 	}
 	return (1);
 }
+int	parse_arguments(int ac, char **av, t_data *data)
+{
+	int	i;
 
+	i = 1;
+	// Validate all arguments are digits
+	while (i < ac)
+	{
+		if (!is_valid_input(av[i]))
+		{
+			printf("Error: Invalid argument: %s\n", av[i]);
+			return (0);
+		}
+		i++;
+	}
+	// Convert arguments to integers
+	data->num_philos = atoi(av[1]);    // number_of_philosophers
+	data->time_to_die = atoi(av[2]);   // time_to_die
+	data->time_to_eat = atoi(av[3]);   // time_to_eat
+	data->time_to_sleep = atoi(av[4]); // time_to_sleep
+	if (ac == 6)
+		data->must_eat = atoi(av[5]);
+	// number_of_times_each_philosopher_must_eat (optional)
+	else
+		data->must_eat = -1; // -1 indicates no limit
+	// Check for valid values
+	if (data->num_philos <= 0)
+	{
+		printf("Error: Need at least one philosopher\n");
+		return (0);
+	}
+	if (data->num_philos > 200)
+	{
+		printf("Error: too many philos\n");
+		return (0);
+	}
+	if (data->num_philos <= 0 || data->time_to_die <= 0
+		|| data->time_to_eat <= 0)
+	{
+		printf("Error: Time values must be positive\n");
+		return (0);
+	}
+	if (ac == 6 && data->must_eat <= 0)
+	{
+		printf("Error: Number of meals must be positive\n");
+		return (0);
+	}
+
+	return (1);
+}
 void print_philo_data(t_data *data)
 {
 	printf("philo num - %d\n", data->num_philos);

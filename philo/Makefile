@@ -6,7 +6,7 @@
 #    By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 14:19:08 by mzhivoto          #+#    #+#              #
-#    Updated: 2025/07/27 16:23:03 by mzhivoto         ###   ########.fr        #
+#    Updated: 2025/07/29 22:56:42 by mzhivoto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC = $(SRCS_PATH)/main.c \
 		$(SRCS_PATH)/utils.c\
 		$(SRCS_PATH)/parser.c\
 		$(SRCS_PATH)/init.c\
+		$(SRCS_PATH)/philo.c\
 
 OBJ := $(SRC:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 

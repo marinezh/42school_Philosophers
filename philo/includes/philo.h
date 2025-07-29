@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/29 14:17:27 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/29 22:57:10 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ int	ft_isdigit(int c);
 int	parse_arguments(int ac, char **av, t_data *data);
 int	is_valid_input(char *str);
 long long	get_time_ms(void);
+void	ft_usleep(int ms);
 
 
 int	init_data(t_data *data);
+void	*philo_routine(void *arg);
 
 
 //DELETE

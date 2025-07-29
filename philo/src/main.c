@@ -6,62 +6,13 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:14:53 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/29 17:45:34 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/29 22:56:08 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	parse_arguments(int ac, char **av, t_data *data)
-{
-	int	i;
 
-	i = 1;
-	// Validate all arguments are digits
-	while (i < ac)
-	{
-		if (!is_valid_input(av[i]))
-		{
-			printf("Error: Invalid argument: %s\n", av[i]);
-			return (0);
-		}
-		i++;
-	}
-	// Convert arguments to integers
-	data->num_philos = atoi(av[1]);    // number_of_philosophers
-	data->time_to_die = atoi(av[2]);   // time_to_die
-	data->time_to_eat = atoi(av[3]);   // time_to_eat
-	data->time_to_sleep = atoi(av[4]); // time_to_sleep
-	if (ac == 6)
-		data->must_eat = atoi(av[5]);
-	// number_of_times_each_philosopher_must_eat (optional)
-	else
-		data->must_eat = -1; // -1 indicates no limit
-	// Check for valid values
-	if (data->num_philos <= 0)
-	{
-		printf("Error: Need at least one philosopher\n");
-		return (0);
-	}
-	if (data->num_philos > 200)
-	{
-		printf("Error: too many philos\n");
-		return (0);
-	}
-	if (data->num_philos <= 0 || data->time_to_die <= 0
-		|| data->time_to_eat <= 0)
-	{
-		printf("Error: Time values must be positive\n");
-		return (0);
-	}
-	if (ac == 6 && data->must_eat <= 0)
-	{
-		printf("Error: Number of meals must be positive\n");
-		return (0);
-	}
-
-	return (1);
-}
 void	*death_check(void *arg)
 {
 	t_data	*data;
@@ -88,50 +39,7 @@ void	*death_check(void *arg)
 			}
 			i++;
 		}
-		usleep(10);
-	}
-	return NULL;
-}
-void	*philo_routine(void *arg)
-{
-	t_philo	*philo;
-	long long timestamp;
-
-	philo = (t_philo *)arg;
-	philo->data->start_time = get_time_ms();
-	timestamp = get_time_ms() - philo->data->start_time;
-
-	printf("YYY %d\n", philo->data->is_dead);
-	while (!philo->data->is_dead)
-	{
-		//thinking
-		timestamp = get_time_ms() - philo->data->start_time;
-		printf("%lld Philosopher %d is thinking\n",timestamp, philo->id + 1);
-		pthread_mutex_lock(&philo->left_fork->lock);
-
-		//pick up left fork
-		timestamp = get_time_ms() - philo->data->start_time;
-		printf("%lld Philosopher %d picked up left fork %d\n", timestamp, philo->id + 1, philo->left_fork->id + 1);
-		pthread_mutex_lock(&philo->right_fork->lock);
-
-		//pick up right fork
-		timestamp = get_time_ms() - philo->data->start_time;
-		printf("%lld Philosopher %d picked up right fork %d\n",timestamp, philo->id + 1,philo->right_fork->id + 1);
-
-		philo->last_meal_time = get_time_ms();
-
-		//eating
-		timestamp = get_time_ms() - philo->data->start_time;
-		printf("%lld Philosopher %d is eating\n",timestamp, philo->id + 1);
-		usleep(philo->data->time_to_eat * 1000);
-
-		pthread_mutex_unlock(&philo->left_fork->lock);
-		pthread_mutex_unlock(&philo->right_fork->lock);
-
-		//sleeping
-		timestamp = get_time_ms() - philo->data->start_time;
-		printf("%lld Philosopher %d is sleeping\n",timestamp, philo->id + 1);
-		usleep(philo->data->time_to_sleep * 1000);
+		usleep(1);
 	}
 	return NULL;
 }

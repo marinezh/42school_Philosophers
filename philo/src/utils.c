@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:40:19 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/28 16:22:41 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/29 22:39:17 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ long long	get_time_ms(void)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000LL) + (tv.tv_usec / 1000));
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
 void	ft_usleep(int ms)
@@ -35,3 +35,4 @@ void	ft_usleep(int ms)
 	while (get_time_ms() - start < ms)
 		usleep(100);
 }
+
