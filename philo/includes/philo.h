@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/29 22:57:10 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/30 17:28:48 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int				num_philos;
+	int				num_full;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -49,6 +50,8 @@ typedef struct s_data
 	long long		start_time;
 	t_fork			*forks;
 	pthread_mutex_t	print_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	death_lock;
 	t_philo			*philos;
 	pthread_t		watcher;
 	int				simulation_running;
@@ -59,13 +62,16 @@ int	parse_arguments(int ac, char **av, t_data *data);
 int	is_valid_input(char *str);
 long long	get_time_ms(void);
 void	ft_usleep(int ms);
+void	*death_check(void *arg);
+int is_alive(t_data *data);
+void ft_dreaming(t_data *data, int ms);
 
 
 int	init_data(t_data *data);
 void	*philo_routine(void *arg);
 
 
-//DELETE
+//DELETE;
 
 void print_philo_data(t_data *data);
 int init_forks(t_data *data);

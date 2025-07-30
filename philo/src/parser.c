@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:21:12 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/29 20:50:16 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/30 13:55:47 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ int	parse_arguments(int ac, char **av, t_data *data)
 		printf("Error: Need at least one philosopher\n");
 		return (0);
 	}
-	if (data->num_philos > 200)
-	{
-		printf("Error: too many philos\n");
-		return (0);
-	}
+	// if (data->num_philos > 200)
+	// {
+	// 	printf("Error: too many philos\n");
+	// 	return (0);
+	// }
 	if (data->num_philos <= 0 || data->time_to_die <= 0
 		|| data->time_to_eat <= 0)
 	{

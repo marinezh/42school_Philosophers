@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:40:19 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/29 22:39:17 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:13:11 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,60 @@ void	ft_usleep(int ms)
 	start = get_time_ms();
 	while (get_time_ms() - start < ms)
 		usleep(100);
+	
+}
+
+int is_alive(t_data *data)
+{
+	pthread_mutex_lock(&data->death_lock);
+	if (data->is_dead == 1)
+	{
+		pthread_mutex_unlock(&data->death_lock);
+		return 0;
+	}
+	pthread_mutex_unlock(&data->death_lock);
+	return 1;
+}
+
+// void ft_dreaming(t_data *data, int ms)
+// {
+// 	long long	rest;
+// 	int count;
+// 	int i = 1;
+
+// 	if (ms < data->time_to_die || ms < 50)
+// 	{
+// 		ft_usleep(ms);
+// 		return ;
+// 	}
+// 	count = ms/50;
+// 	rest = ms;
+// 	while(rest > 0 && is_alive(data))
+// 	{
+// 		rest -= 50;
+// 		ft_usleep(50);
+// 		if (i == count && ms%50 != 0)
+// 		{
+// 			rest = ms - 50*count;
+// 		}
+// 		i++;
+// 	}
+
+void ft_dreaming(t_data *data, int ms)
+{
+	long long elapsed = 0;
+
+	if (ms <= 0)
+		return;
+
+	while (elapsed + 50 <= ms && is_alive(data))
+	{
+		ft_usleep(50);
+		elapsed += 50;
+	}
+
+	// Sleep the remainder if still alive
+	if (is_alive(data) && elapsed < ms)
+		ft_usleep(ms - elapsed);
 }
 

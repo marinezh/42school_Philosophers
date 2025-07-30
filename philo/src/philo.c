@@ -6,96 +6,143 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/29 23:49:28 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/30 21:13:44 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+
+void	*death_check(void *arg)
+{
+	t_data	*data;
+	int		i;
+	long long cur_time;
+	
+	data = (t_data *)arg;
+	
+	//printf("IS RUNNING \n");
+	while(1)
+	{
+		i = 0;
+		while (i < data->num_philos)
+		{
+			pthread_mutex_lock(&data->death_lock);
+			cur_time = get_time_ms() - data->philos[i].last_meal_time; // CHANGE NAME cur_time
+			//printf("XXXX%lld \n", cur_time);
+			if (data->num_full == data->num_philos)
+			{
+				//pthread_mutex_lock(&data->death_lock);
+				data->is_dead = 1;
+				pthread_mutex_unlock(&data->death_lock);
+				return NULL;
+			}
+			//pthread_mutex_lock(&data->meal_lock);
+			if(cur_time > data->time_to_die)
+			{
+				data->is_dead = 1;
+				pthread_mutex_lock(&data->print_lock);
+				printf("%lld %d died\n",get_time_ms() - data->start_time,data->philos[i].id + 1);
+				pthread_mutex_unlock(&data->print_lock);
+				pthread_mutex_unlock(&data->death_lock);
+				return NULL;
+			}
+			pthread_mutex_unlock(&data->death_lock);
+			i++;
+		}
+		usleep(5);
+	}
+	return NULL;
+}
+
 void print_status(t_philo *philo, const char *msg)
 {
 	long long timestamp = get_time_ms() - philo->data->start_time;
-	pthread_mutex_lock(&philo->data->print_lock);
-	 if (!philo->data->is_dead)  // Only print if simulation is still running
-		printf("%lld Philosopher %d %s\n", timestamp, philo->id + 1, msg);
-	pthread_mutex_unlock(&philo->data->print_lock);
+	
+	if (is_alive(philo->data))
+	{
+		pthread_mutex_lock(&philo->data->print_lock);
+		printf("%lld %d %s\n", timestamp, philo->id + 1, msg);
+		pthread_mutex_unlock(&philo->data->print_lock);
+	}  // Only print if simulation is still running
+}
+void *eat(t_philo *philo)
+{
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(&philo->left_fork->lock);
+		print_status(philo, "has taken a fork");
+		pthread_mutex_lock(&philo->right_fork->lock);
+		print_status(philo, "has taken a fork");
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->right_fork->lock);
+		print_status(philo, "has taken a fork");
+		pthread_mutex_lock(&philo->left_fork->lock);
+		print_status(philo, "has taken a fork");
+	}
+	
+	// pthread_mutex_lock(&philo->left_fork->lock);
+	// print_status(philo, "has taken a fork");
+	// pthread_mutex_lock(&philo->right_fork->lock);
+	// print_status(philo, "has taken a fork");
+
+	pthread_mutex_lock(&philo->data->death_lock);
+	philo->last_meal_time = get_time_ms();
+	philo->meals_eaten++;
+	pthread_mutex_unlock(&philo->data->death_lock);
+	// TO DO : CHECK if philo dies what next, do i need to unluck fork
+	print_status(philo, "is eating");
+	//ft_usleep(philo->data->time_to_eat);
+	ft_dreaming(philo->data, philo->data->time_to_eat);
+	
+	pthread_mutex_unlock(&philo->left_fork->lock);
+	pthread_mutex_unlock(&philo->right_fork->lock);
+	if (philo->data->must_eat > 0)
+	{
+		if (philo->data->must_eat == philo->meals_eaten)
+		{
+			pthread_mutex_lock(&philo->data->death_lock);
+			philo->data->num_full++;
+			pthread_mutex_unlock(&philo->data->death_lock);
+			return NULL;
+		}
+			//return NULL;
+	}
+	return NULL;
+}
+
+void run_one_philo(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->right_fork->lock);
+	print_status(philo, "has taken a fork");
+	pthread_mutex_unlock(&philo->right_fork->lock);
 }
 
 void	*philo_routine(void *arg)
 {
 	t_philo	*philo = (t_philo *)arg;
 
-	// Even philosophers wait a bit to avoid deadlock
-	if (philo->id % 2 == 0)
-		ft_usleep(1);
+	if (philo->data->num_philos == 1)
+	{
+		run_one_philo(philo);
+		return NULL;
+	}
+	 if (philo->id % 2 == 0)
+	 	ft_usleep(15);
 
-	while (!philo->data->is_dead)
+	while (is_alive(philo->data))
 	{
 		print_status(philo, "is thinking");
-
-		pthread_mutex_lock(&philo->left_fork->lock);
-		print_status(philo, "has taken a fork");
-
-		pthread_mutex_lock(&philo->right_fork->lock);
-		print_status(philo, "has taken a fork");
-		
-		// do i need to add mutex (lock/unlock) to the eating process
-		//  pthread_mutex_lock(&philo->data->meal_lock); ???
-		philo->last_meal_time = get_time_ms();
-		print_status(philo, "is eating");
-		ft_usleep(philo->data->time_to_eat);
-
-		pthread_mutex_unlock(&philo->left_fork->lock);
-		pthread_mutex_unlock(&philo->right_fork->lock);
-
-		// TO DO 
-		// add check for must_eat !!!
-		print_status(philo, "is sleeping");
-		ft_usleep(philo->data->time_to_sleep);
+		if (is_alive(philo->data))
+			eat(philo);
+		if (is_alive(philo->data))
+		{
+			print_status(philo, "is sleeping");
+			//ft_usleep(philo->data->time_to_sleep);
+			ft_dreaming(philo->data, philo->data->time_to_sleep);
+		}
 	}
 	return NULL;
 }
-// void	*philo_routine(void *arg)
-// {
-// 	t_philo	*philo;
-// 	long long timestamp;
-
-// 	philo = (t_philo *)arg;
-// 	philo->data->start_time = get_time_ms();
-// 	timestamp = get_time_ms() - philo->data->start_time;
-
-// 	printf("YYY %d\n", philo->data->is_dead);
-// 	while (!philo->data->is_dead)
-// 	{
-// 		//thinking
-// 		timestamp = get_time_ms() - philo->data->start_time;
-// 		printf("%lld Philosopher %d is thinking\n",timestamp, philo->id + 1);
-// 		
-// 		pthread_mutex_lock(&philo->left_fork->lock);
-
-// 		//pick up left fork
-// 		timestamp = get_time_ms() - philo->data->start_time;
-// 		printf("%lld Philosopher %d picked up left fork %d\n", timestamp, philo->id + 1, philo->left_fork->id + 1);
-// 		pthread_mutex_lock(&philo->right_fork->lock);
-
-// 		//pick up right fork
-// 		timestamp = get_time_ms() - philo->data->start_time;
-// 		printf("%lld Philosopher %d picked up right fork %d\n",timestamp, philo->id + 1,philo->right_fork->id + 1);
-
-// 		philo->last_meal_time = get_time_ms();
-
-// 		//eating
-// 		timestamp = get_time_ms() - philo->data->start_time;
-// 		printf("%lld Philosopher %d is eating\n",timestamp, philo->id + 1);
-// 		usleep(philo->data->time_to_eat * 1000);
-
-// 		pthread_mutex_unlock(&philo->left_fork->lock);
-// 		pthread_mutex_unlock(&philo->right_fork->lock);
-
-// 		//sleeping
-// 		timestamp = get_time_ms() - philo->data->start_time;
-// 		printf("%lld Philosopher %d is sleeping\n",timestamp, philo->id + 1);
-// 		usleep(philo->data->time_to_sleep * 1000);
-// 	}
-// 	return NULL;
-// }
