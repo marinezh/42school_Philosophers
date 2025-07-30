@@ -1466,3 +1466,61 @@ Expected: 60 Actual:
 2 100 100 100 5: Program timed out. Possible infinite loop
 
 ---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----

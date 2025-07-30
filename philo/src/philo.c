@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/31 00:18:13 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/31 00:49:13 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ void	*philo_routine(void *arg)
 		if (is_alive(philo->data))
 			if(eat(philo) == 1)
 				break;
-			eat(philo);
 		if (is_alive(philo->data))
 		{
 			print_status(philo, "is sleeping");
