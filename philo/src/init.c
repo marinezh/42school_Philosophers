@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:42:32 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/30 19:46:07 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/30 22:50:12 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int init_forks(t_data *data)
 		printf("memory allocation failed\n");
 		return 0;
 	}
-	printf("CHECK FORKS %d\n", data->num_philos);
+	//printf("CHECK FORKS %d\n", data->num_philos);
 	i = 0;
 	while (i < data->num_philos)
 	{
@@ -32,7 +32,7 @@ int init_forks(t_data *data)
 			printf("Failed to initialize fork mutex %d\n", i);
 			return (0);
 		}
-		printf("Fork %d initialized\n", i);
+		//printf("Fork %d initialized\n", i);
 		i++;
 	}
 	return 1;
@@ -42,7 +42,7 @@ int init_philos(t_data *data)
 {
 	int i;
 
-	printf("Initializing philosophers...\n");
+	//printf("Initializing philosophers...\n");
 	data->philos = malloc(sizeof(t_philo) * data->num_philos);
 	if (!data->philos)
 	{
@@ -60,8 +60,8 @@ int init_philos(t_data *data)
 		data->philos[i].left_fork = &data->forks[i];
 		data->philos[i].right_fork = &data->forks[(i + 1) % data->num_philos];
 		data->philos[i].data = data;
-		printf("Philosopher %d initialized | Left fork: %d | Right fork: %d\n",
-			data->philos[i].id, i, (i + 1) % data->num_philos);
+		// printf("Philosopher %d initialized | Left fork: %d | Right fork: %d\n",
+		// 	data->philos[i].id, i, (i + 1) % data->num_philos);
 		i++;
 	}
 	return (1);

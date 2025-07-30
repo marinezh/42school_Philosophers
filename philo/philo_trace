@@ -648,3 +648,821 @@
 -- Death Tests --
 
 ---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 200 60 60 2: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 100 60 60 2: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 500 100 100 2: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 500 100 100 10: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 1000 250 250 2: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 100 150 150 10: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+-- No Death Tests --
+
+2 130 60 60 4: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+2 300 100 100 4: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+2 300 100 100 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+3 200 65 65 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+3 310 100 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+4 210 100 100 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+4 410 200 200 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+4 600 200 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 610 200 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 600 100 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 800 200 200 7: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 300 60 60 15: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+10 500 100 100 50: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+11 900 150 90 20: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+-- Death Tests --
+
+2 100 60 60 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+2 100 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+2 800 700 110 2: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+3 210 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+3 61 60 60 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+4 190 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+5 90 60 60 3: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+10 199 100 100 10: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 200 60 60 2: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 100 60 60 2: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 500 100 100 2: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 500 100 100 10: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 1000 250 250 2: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 100 150 150 10: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+-- No Death Tests --
+
+2 130 60 60 4: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+2 300 100 100 4: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+2 300 100 100 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+3 200 65 65 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+3 310 100 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+4 210 100 100 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+4 410 200 200 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+4 600 200 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 610 200 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 600 100 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 800 200 200 7: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 300 60 60 15: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+10 500 100 100 50: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+11 900 150 90 20: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+-- Death Tests --
+
+2 100 60 60 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+2 100 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+2 800 700 110 2: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+3 210 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+3 61 60 60 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+4 190 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+5 90 60 60 3: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+10 199 100 100 10: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 201
+
+1 200 60 60 2: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 201
+
+1 100 60 60 2: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 101
+
+1 500 100 100 2: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 501
+
+1 500 100 100 10: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 501
+
+1 1000 250 250 2: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 1001
+
+1 100 150 150 10: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 101
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+10 500 100 100 50: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+11 900 150 90 20: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 201
+
+1 200 60 60 2: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 201
+
+1 100 60 60 2: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 101
+
+1 500 100 100 2: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 501
+
+1 500 100 100 10: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 501
+
+1 1000 250 250 2: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 1001
+
+1 100 150 150 10: Timestamp error: Non numerical
+	Simulation start: CHECK Death: 101
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+4 600 200 200 5: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+5 610 200 200 5: Philosopher died
+	
+
+11 900 150 90 20: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+2 300 100 100 4: Philosophers did not sleep for the correct time
+Expected: 100 Actual: 
+
+3 200 65 65 5: Philosopher died
+	
+
+4 210 100 100 10: Philosophers took too many forks
+	Expected: 40 Actual 42
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+5 300 60 60 15: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosophers did not sleep for the correct time
+Expected: 60 Actual: 
+
+5 610 200 200 5: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+3 200 65 65 5: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+4 210 100 100 10: Philosophers took too many forks
+	Expected: 40 Actual 42
+
+4 410 200 200 10: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+5 610 200 200 5: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+5 600 100 200 5: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+5 800 200 200 7: Philosophers did not eat for the correct time
+	Expected: 200 Actual: 
+
+11 900 150 90 20: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+4 410 200 200 10: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+4 210 100 100 10: Philosophers took too many forks
+	Expected: 40 Actual 42
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosopher died
+	
+
+2 300 100 100 4: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+2 300 100 100 5: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+4 600 200 200 5: Philosophers did not eat for the correct time
+	Expected: 200 Actual: 
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+10 500 100 100 50: Philosophers took too many forks
+	Expected: 501 Actual 503
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+2 100 100 100 5: Philosopher did not die on time
+	Expected: 100 Actual: 112
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosopher died
+	
+
+2 300 100 100 4: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+2 300 100 100 5: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+4 600 200 200 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Program timed out. Possible infinite loop
+
+10 500 100 100 50: Philosopher died
+	
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosopher died
+	
+
+2 300 100 100 4: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosopher died
+	
+
+2 300 100 100 4: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+2 300 100 100 5: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+4 600 200 200 5: Philosophers did not eat for the correct time
+	Expected: 200 Actual: 
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosophers did not eat for the correct time
+	Expected: 60 Actual: 
+
+10 500 100 100 50: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosopher died
+	
+
+2 300 100 100 4: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+2 300 100 100 5: Program timed out. Possible infinite loop
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+4 600 200 200 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosophers did not eat for the correct time
+	Expected: 100 Actual: 
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+10 500 100 100 50: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Program timed out. Possible infinite loop
+
+2 300 100 100 4: Program timed out. Possible infinite loop
+
+2 300 100 100 5: Program timed out. Possible infinite loop
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+4 600 200 200 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+10 500 100 100 50: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+2 100 100 100 5: Program timed out. Possible infinite loop
+
+---- TRACE ENDS ----
