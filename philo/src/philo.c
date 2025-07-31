@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/30 21:13:44 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/31 18:55:52 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void run_one_philo(t_philo *philo)
 	pthread_mutex_lock(&philo->right_fork->lock);
 	print_status(philo, "has taken a fork");
 	pthread_mutex_unlock(&philo->right_fork->lock);
+	ft_usleep(philo->data->time_to_die + 10);
 }
 
 void	*philo_routine(void *arg)

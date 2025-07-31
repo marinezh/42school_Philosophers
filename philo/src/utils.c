@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:40:19 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/30 18:13:11 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/31 18:54:11 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,38 @@ int is_alive(t_data *data)
 // 		i++;
 // 	}
 
+// void ft_dreaming(t_data *data, int ms)
+// {
+// 	long long elapsed = 0;
+
+// 	if (ms <= 0)
+// 		return;
+
+// 	while (elapsed + 50 <= ms && is_alive(data))
+// 	{
+// 		ft_usleep(50);
+// 		elapsed += 50;
+// 	}
+
+// 	// Sleep the remainder if still alive
+// 	if (is_alive(data) && elapsed < ms)
+// 		ft_usleep(ms - elapsed);
+// }
 void ft_dreaming(t_data *data, int ms)
 {
-	long long elapsed = 0;
-
-	if (ms <= 0)
-		return;
-
-	while (elapsed + 50 <= ms && is_alive(data))
-	{
-		ft_usleep(50);
-		elapsed += 50;
-	}
-
-	// Sleep the remainder if still alive
-	if (is_alive(data) && elapsed < ms)
-		ft_usleep(ms - elapsed);
+    long long start_time = get_time_ms();
+    long long current_time;
+    
+    if (ms <= 0)
+        return;
+        
+    while (is_alive(data))
+    {
+        current_time = get_time_ms();
+        if (current_time - start_time >= ms)
+            break;
+            
+        // Sleep in small chunks to be able to check is_alive frequently
+        usleep(100);  // 0.5ms intervals for responsiveness
+    }
 }
-
