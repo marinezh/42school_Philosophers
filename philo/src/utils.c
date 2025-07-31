@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:40:19 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/31 02:47:00 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/31 17:01:38 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_usleep(int ms)
 
 	start = get_time_ms();
 	while (get_time_ms() - start < ms)
-		usleep(100);
+		usleep(200);
 	
 }
 

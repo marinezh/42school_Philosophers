@@ -45,59 +45,59 @@ run_err()
 # Function to test one philosopher. Will check to make sure they die and at the correct time.
 # Test also implicitly tests that 4 arguments are valid as this is not tested explicitly elsewhere.
 
-# run_one()
-# {
-# 	local test_desc=$1
-# 	local min=$3
-# 	local max=$((min + 10))
-# 	local runtime=20
-# 	local first_ts
-# 	shift
-# 	> .julestestout
-# 	> .julesone
-# 	( ./philo $@ 1> .julesone 2> /dev/null ) &
-# 	PID=$!
-# 	SECONDS=0
-# 	while ps -p $PID > /dev/null; do
-# 		if [ $SECONDS -gt $runtime ]; then
-# 			kill $PID
-# 			echo -n "❌" 
-# 			echo -e "$test_desc: Program timed out. Possible infinite loop\n" >> philo_trace
-# 			return 1
-# 		fi
-# 		sleep 1
-# 	done
-# 	wait $PID
-# 	exit_code=$?
-# 	if [ $exit_code -eq 139 ]; then
-# 		echo -n "❌"
-# 		echo -e "$test_desc: Segmentation Fault\n" >> philo_trace
-# 		return 1
-# 	fi
-# 	first_ts=$(head -n 1 .julesone | awk '{print $1}')
-# 	time=$(tail -n 1 .julesone | awk '{print $1}')
-# 	if [[ ! $first_ts =~ ^[0-9]+$ ]] || [[ ! $time =~ ^[0-9]+$ ]] || [[ ! $3 =~ ^[0-9]+$ ]]; then
-# 		echo -n "❌"
-# 		echo -e "$test_desc: Timestamp error: Non numerical\n\tSimulation start: $first_ts Death: $time\n" >> philo_trace
-# 		return 1
-# 	elif [[ ! $min =~ ^[0-9]+$ ]]; then
-# 		echo -n "❌"
-# 		echo -e "$test_desc: Input error: Non numerical\n\tTime to die: $min\n" >> philo_trace
-# 		return 1
-# 	fi
-# 	if ((time - first_ts >= min - 1)) && ((time - first_ts <= max)); then
-# 		tail -n 1 .julesone | sed 's/[0-9]\+ //' > .julestestout
-# 		if diff .julestestout .julestestfile > /dev/null; then
-# 			echo -n "✅"
-# 		else
-# 			echo -n "❌"
-# 			echo -e "$test_desc: Philosopher did not die\n" >> philo_trace
-# 		fi
-# 	else
-# 		echo -n "❌"
-# 		echo -e "$test_desc: Philosopher did not die on time\nSimulation start: $first_ts Death: $time\n" >> philo_trace
-# 	fi
-# }
+run_one()
+{
+	local test_desc=$1
+	local min=$3
+	local max=$((min + 10))
+	local runtime=20
+	local first_ts
+	shift
+	> .julestestout
+	> .julesone
+	( ./philo $@ 1> .julesone 2> /dev/null ) &
+	PID=$!
+	SECONDS=0
+	while ps -p $PID > /dev/null; do
+		if [ $SECONDS -gt $runtime ]; then
+			kill $PID
+			echo -n "❌" 
+			echo -e "$test_desc: Program timed out. Possible infinite loop\n" >> philo_trace
+			return 1
+		fi
+		sleep 1
+	done
+	wait $PID
+	exit_code=$?
+	if [ $exit_code -eq 139 ]; then
+		echo -n "❌"
+		echo -e "$test_desc: Segmentation Fault\n" >> philo_trace
+		return 1
+	fi
+	first_ts=$(head -n 1 .julesone | awk '{print $1}')
+	time=$(tail -n 1 .julesone | awk '{print $1}')
+	if [[ ! $first_ts =~ ^[0-9]+$ ]] || [[ ! $time =~ ^[0-9]+$ ]] || [[ ! $3 =~ ^[0-9]+$ ]]; then
+		echo -n "❌"
+		echo -e "$test_desc: Timestamp error: Non numerical\n\tSimulation start: $first_ts Death: $time\n" >> philo_trace
+		return 1
+	elif [[ ! $min =~ ^[0-9]+$ ]]; then
+		echo -n "❌"
+		echo -e "$test_desc: Input error: Non numerical\n\tTime to die: $min\n" >> philo_trace
+		return 1
+	fi
+	if ((time - first_ts >= min - 1)) && ((time - first_ts <= max)); then
+		tail -n 1 .julesone | sed 's/[0-9]\+ //' > .julestestout
+		if diff .julestestout .julestestfile > /dev/null; then
+			echo -n "✅"
+		else
+			echo -n "❌"
+			echo -e "$test_desc: Philosopher did not die\n" >> philo_trace
+		fi
+	else
+		echo -n "❌"
+		echo -e "$test_desc: Philosopher did not die on time\nSimulation start: $first_ts Death: $time\n" >> philo_trace
+	fi
+}
 
 # Function to test valid input. Checks timestamps of philo 1 to make sure actions are correctly timed.
 
