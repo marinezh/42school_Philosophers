@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:40:19 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/31 18:54:11 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/31 19:12:35 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,7 @@ void	ft_usleep(int ms)
 	
 }
 
-int is_alive(t_data *data)
-{
-	pthread_mutex_lock(&data->death_lock);
-	if (data->is_dead == 1)
-	{
-		pthread_mutex_unlock(&data->death_lock);
-		return 0;
-	}
-	pthread_mutex_unlock(&data->death_lock);
-	return 1;
-}
+
 
 // void ft_dreaming(t_data *data, int ms)
 // {

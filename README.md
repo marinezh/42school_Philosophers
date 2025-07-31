@@ -9,3 +9,45 @@ pthread_create(thread, attr, routine, arg);
 
 (pthread_create(&(party->philosophers[i].thread), NULL,
 		philosopher_routine, (void *)&(party->philosophers[i])) != 0)
+
+no dies 
+./philo 5 600 150 150 
+./philo 5 800 200 200 
+./philo 105 800 200 200 
+./philo 3 190 60 60 
+./philo 101 179 60 60
+
+no dies 
+./philo 4 410 200 200 
+./philo 100 800 200 200 
+./philo 200 800 200 200 
+./philo 4 800 200 200 
+./philo 2 170 60 60 
+./philo 2 150 60 60 
+./philo 4 405 200 200 
+./philo 4 130 60 60 
+./philo 100 410 200 200 
+./philo 100 130 60 60 
+
+no dies 
+./philo 4 410 200 200 12 
+./philo 5 800 200 200 7 
+./philo 4 410 200 200 10 
+./philo 4 410 200 200 15 
+./philo 2 800 700 90 1
+
+one die 
+./philo 5 200 800000 200 
+
+
+3 200 65 65 5: Philosopher died
+	
+
+4 210 100 100 10: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+5 610 200 200 5: Philosopher died
+	
+
+11 900 150 90 20: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+-- Death Tests --
+
+---- TRACE ENDS ----

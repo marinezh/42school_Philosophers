@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/30 17:28:48 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/31 22:17:35 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_philo
 {
 	int				id;
 	int				meals_eaten;
+	// int 			is_full;
 	long long		last_meal_time;
 	pthread_t		thread;
 	t_fork			*left_fork;
@@ -54,7 +55,7 @@ typedef struct s_data
 	pthread_mutex_t	death_lock;
 	t_philo			*philos;
 	pthread_t		watcher;
-	int				simulation_running;
+	// int				simulation_running;
 }					t_data;
 
 int	ft_isdigit(int c);
@@ -65,6 +66,8 @@ void	ft_usleep(int ms);
 void	*death_check(void *arg);
 int is_alive(t_data *data);
 void ft_dreaming(t_data *data, int ms);
+void	*death_check(void *arg);
+void	check_starvation_delay(t_philo *philo);
 
 
 int	init_data(t_data *data);
