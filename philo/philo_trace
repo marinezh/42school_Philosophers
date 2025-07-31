@@ -2517,3 +2517,6 @@ Expected: 60 Actual:
 5 300 60 60 15: Philosopher died
 	
 
+-- Death Tests --
+
+---- TRACE ENDS ----
