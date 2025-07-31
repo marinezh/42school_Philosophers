@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/30 17:28:48 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/31 02:09:42 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ typedef struct s_data
 	long long		start_time;
 	t_fork			*forks;
 	pthread_mutex_t	print_lock;
-	pthread_mutex_t	meal_lock;
+	// pthread_mutex_t	meal_lock;
 	pthread_mutex_t	death_lock;
 	t_philo			*philos;
 	pthread_t		watcher;
-	int				simulation_running;
 }					t_data;
 
 int	ft_isdigit(int c);

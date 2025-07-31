@@ -1524,3 +1524,361 @@ Expected: 60 Actual:
 -- Death Tests --
 
 ---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+5 610 200 200 5: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+1 1 1 0: Segmentation Fault
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Segmentation Fault
+
+2 300 100 100 4: Segmentation Fault
+
+2 300 100 100 5: Segmentation Fault
+
+3 200 65 65 5: Segmentation Fault
+
+3 310 100 200 5: Segmentation Fault
+
+4 210 100 100 10: Segmentation Fault
+
+4 410 200 200 10: Segmentation Fault
+
+4 600 200 200 5: Segmentation Fault
+
+5 610 200 200 5: Segmentation Fault
+
+5 600 100 200 5: Segmentation Fault
+
+5 800 200 200 7: Segmentation Fault
+
+5 300 60 60 15: Segmentation Fault
+
+10 500 100 100 50: Segmentation Fault
+
+11 900 150 90 20: Segmentation Fault
+
+-- Death Tests --
+
+2 100 60 60 5: Segmentation Fault
+
+2 100 100 100 5: Segmentation Fault
+
+2 800 700 110 2: Segmentation Fault
+
+3 210 100 100 5: Segmentation Fault
+
+3 61 60 60 5: Segmentation Fault
+
+4 190 100 100 5: Segmentation Fault
+
+5 90 60 60 3: Segmentation Fault
+
+10 199 100 100 10: Segmentation Fault
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosopher died
+	
+
+3 200 65 65 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+10 500 100 100 50: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+11 900 150 90 20: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----

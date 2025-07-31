@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:40:19 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/30 23:51:03 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/31 02:47:00 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,11 @@ void	ft_usleep(int ms)
 
 	start = get_time_ms();
 	while (get_time_ms() - start < ms)
-		usleep(500);
+		usleep(100);
 	
 }
 
-int is_alive(t_data *data)
-{
-	pthread_mutex_lock(&data->death_lock);
-	if (data->is_dead == 1)
-	{
-		pthread_mutex_unlock(&data->death_lock);
-		return 0;
-	}
-	pthread_mutex_unlock(&data->death_lock);
-	return 1;
-}
+
 
 // void ft_dreaming(t_data *data, int ms)
 // {
@@ -106,6 +96,6 @@ void ft_dreaming(t_data *data, int ms)
             break;
             
         // Sleep in small chunks to be able to check is_alive frequently
-        usleep(500);  // 0.5ms intervals for responsiveness
+        usleep(100);  // 0.5ms intervals for responsiveness
     }
 }
