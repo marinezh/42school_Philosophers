@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:42:32 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/31 19:00:13 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/07/31 21:37:03 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int init_philos(t_data *data)
 	{
 		data->philos[i].id = i;
 		data->philos[i].meals_eaten = 0;
+		//data->philos[i].is_full = 0;
 		data->philos[i].last_meal_time = get_time_ms();
 		data->philos[i].left_fork = &data->forks[i];
 		data->philos[i].right_fork = &data->forks[(i + 1) % data->num_philos];
