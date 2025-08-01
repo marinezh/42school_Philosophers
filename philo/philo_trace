@@ -2544,3 +2544,960 @@
 -- Death Tests --
 
 ---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+5 610 200 200 5: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 200 60 60 1: Philosopher did not die
+
+1 200 60 60 2: Philosopher did not die
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosophers did not eat enough
+	Expected: 15 Actual: 6
+
+5 610 200 200 5: Philosophers did not eat enough
+	Expected: 25 Actual: 10
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+5 610 200 200 5: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Timestamp error: Non numerical
+	Philo 1 eating timestamp: 60 Philo 1 sleep timestamp: 120 Philo 1 think timestamp: 180 Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+2 300 100 100 4: Timestamp error: Non numerical
+	Philo 1 eating timestamp: 100 Philo 1 sleep timestamp: 200 Philo 1 think timestamp: 300 Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+2 300 100 100 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp: 100 Philo 1 sleep timestamp: 200 Philo 1 think timestamp: 300 Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosophers did not take enough forks
+	Expected: 30 Actual: 0
+
+4 210 100 100 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 410 200 200 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 600 200 200 5: Philosophers did not take enough forks
+	Expected: 40 Actual: 0
+
+5 610 200 200 5: Philosophers did not take enough forks
+	Expected: 50 Actual: 0
+
+5 600 100 200 5: Philosophers did not take enough forks
+	Expected: 50 Actual: 0
+
+5 800 200 200 7: Philosophers did not take enough forks
+	Expected: 70 Actual: 0
+
+5 300 60 60 15: Philosophers did not take enough forks
+	Expected: 150 Actual: 0
+
+10 500 100 100 50: Philosophers did not take enough forks
+	Expected: 1000 Actual: 0
+
+11 900 150 90 20: Philosophers did not take enough forks
+	Expected: 440 Actual: 0
+
+-- Death Tests --
+
+2 100 60 60 5: Philosopher did not die on time
+	Expected: 100 Actual: 41
+
+2 100 100 100 5: Philosopher did not die on time
+	Expected: 100 Actual: 1
+
+2 800 700 110 2: Philosopher did not die on time
+	Expected: 800 Actual: 101
+
+3 210 100 100 5: Philosopher did not die on time
+	Expected: 210 Actual: 11
+
+3 61 60 60 5: Philosopher did not die on time
+	Expected: 61 Actual: 1
+
+4 190 100 100 5: Philosopher did not die on time
+	Expected: 190 Actual: 91
+
+5 90 60 60 3: Philosopher did not die on time
+	Expected: 90 Actual: 31
+
+10 199 100 100 10: Philosopher did not die on time
+	Expected: 199 Actual: 100
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosophers did not take enough forks
+	Expected: 16 Actual: 0
+
+2 300 100 100 4: Philosophers did not take enough forks
+	Expected: 16 Actual: 0
+
+2 300 100 100 5: Philosophers did not take enough forks
+	Expected: 20 Actual: 0
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosophers did not take enough forks
+	Expected: 30 Actual: 0
+
+4 210 100 100 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 410 200 200 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 600 200 200 5: Philosophers did not take enough forks
+	Expected: 40 Actual: 0
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosophers did not take enough forks
+	Expected: 50 Actual: 0
+
+5 800 200 200 7: Philosophers did not take enough forks
+	Expected: 70 Actual: 0
+
+5 300 60 60 15: Philosophers did not take enough forks
+	Expected: 150 Actual: 0
+
+10 500 100 100 50: Philosophers did not take enough forks
+	Expected: 1000 Actual: 0
+
+11 900 150 90 20: Philosophers did not take enough forks
+	Expected: 440 Actual: 0
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosophers did not take enough forks
+	Expected: 16 Actual: 0
+
+2 300 100 100 4: Philosophers did not take enough forks
+	Expected: 16 Actual: 0
+
+2 300 100 100 5: Philosophers did not take enough forks
+	Expected: 20 Actual: 0
+
+3 200 65 65 5: Philosophers did not take enough forks
+	Expected: 30 Actual: 0
+
+3 310 100 200 5: Philosophers did not take enough forks
+	Expected: 30 Actual: 0
+
+4 210 100 100 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 410 200 200 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 600 200 200 5: Philosophers did not take enough forks
+	Expected: 40 Actual: 0
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosophers did not take enough forks
+	Expected: 50 Actual: 0
+
+5 800 200 200 7: Philosophers did not take enough forks
+	Expected: 70 Actual: 0
+
+5 300 60 60 15: Philosophers did not take enough forks
+	Expected: 150 Actual: 0
+
+10 500 100 100 50: Philosophers did not take enough forks
+	Expected: 1000 Actual: 0
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosophers did not take enough forks
+	Expected: 16 Actual: 0
+
+2 300 100 100 4: Philosophers did not take enough forks
+	Expected: 16 Actual: 0
+
+2 300 100 100 5: Philosophers did not take enough forks
+	Expected: 20 Actual: 0
+
+3 200 65 65 5: Philosophers did not take enough forks
+	Expected: 30 Actual: 0
+
+3 310 100 200 5: Philosophers did not take enough forks
+	Expected: 30 Actual: 0
+
+4 210 100 100 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 410 200 200 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 600 200 200 5: Philosophers did not take enough forks
+	Expected: 40 Actual: 0
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosophers did not take enough forks
+	Expected: 50 Actual: 0
+
+5 800 200 200 7: Philosophers did not take enough forks
+	Expected: 70 Actual: 0
+
+5 300 60 60 15: Philosophers did not take enough forks
+	Expected: 150 Actual: 0
+
+10 500 100 100 50: Philosophers did not take enough forks
+	Expected: 1000 Actual: 0
+
+11 900 150 90 20: Philosophers did not take enough forks
+	Expected: 440 Actual: 0
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosophers did not take enough forks
+	Expected: 16 Actual: 0
+
+2 300 100 100 4: Philosophers did not take enough forks
+	Expected: 16 Actual: 0
+
+2 300 100 100 5: Philosophers did not take enough forks
+	Expected: 20 Actual: 0
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosophers did not take enough forks
+	Expected: 30 Actual: 0
+
+4 210 100 100 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 410 200 200 10: Philosophers did not take enough forks
+	Expected: 80 Actual: 0
+
+4 600 200 200 5: Philosophers did not take enough forks
+	Expected: 40 Actual: 0
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosophers did not take enough forks
+	Expected: 50 Actual: 0
+
+5 800 200 200 7: Philosophers did not take enough forks
+	Expected: 70 Actual: 0
+
+5 300 60 60 15: Philosophers did not take enough forks
+	Expected: 150 Actual: 0
+
+10 500 100 100 50: Philosophers did not take enough forks
+	Expected: 1000 Actual: 0
+
+11 900 150 90 20: Philosophers did not take enough forks
+	Expected: 440 Actual: 0
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+3 200 65 65 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+4 210 100 100 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+4 410 200 200 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+1 100 150 150 10: Philosopher did not die on time
+Simulation start: 0 Death: 201
+
+-- No Death Tests --
+
+1 200 60 60 1: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+1 200 60 60 2: Philosopher did not die
+
+4 600 200 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+1 100 60 60 2: Philosopher did not die
+
+1 500 100 100 2: Philosopher did not die
+
+5 610 200 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+1 500 100 100 10: Philosopher did not die
+
+1 1000 250 250 2: Philosopher did not die
+
+5 600 100 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+1 100 150 150 10: Philosopher did not die
+
+-- No Death Tests --
+
+4 210 100 100 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 800 200 200 7: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 300 60 60 15: Philosophers did not eat enough
+	Expected: 75 Actual: 73
+
+4 410 200 200 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+4 600 200 200 5: Philosophers did not eat enough
+	Expected: 20 Actual: 99
+
+5 610 200 200 5: Philosophers did not eat enough
+	Expected: 25 Actual: 199
+
+4 410 200 200 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 600 100 200 5: Philosophers did not eat enough
+	Expected: 25 Actual: 104
+
+4 600 200 200 5: Philosophers did not eat enough
+	Expected: 20 Actual: 120
+
+10 500 100 100 50: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 610 200 200 5: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 300 60 60 15: Philosophers did not eat enough
+	Expected: 75 Actual: 39
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+5 800 200 200 7: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+5 300 60 60 15: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+-- No Death Tests --
+
+10 500 100 100 50: Philosophers did not eat enough
+	Expected: 500 Actual: 8
+
+2 130 60 60 4: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+2 300 100 100 4: Warning! If philosophers continue eating after eating the required number of times then this test may flag a false positive. Check implementation.
+2 300 100 100 5: Philosophers did not eat enough
+	Expected: 10 Actual: 49
+
+3 200 65 65 5: Philosophers did not eat enough
+	Expected: 15 Actual: 54
+
+3 310 100 200 5: Philosophers did not eat enough
+	Expected: 15 Actual: 55
+
+10 500 100 100 50: Philosophers did not eat enough
+	Expected: 500 Actual: 39
+
+11 900 150 90 20: Philosophers did not eat enough
+	Expected: 220 Actual: 60
+
+-- Death Tests --
+
+4 210 100 100 10: Philosopher died
+	
+
+2 100 60 60 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+3 61 60 60 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+4 190 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+5 90 60 60 3: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+10 199 100 100 10: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+---- TRACE ENDS ----
+4 410 200 200 10: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+11 900 150 90 20: Timestamp error: Non numerical
+	Philo 1 eating timestamp:  Philo 1 sleep timestamp:  Philo 1 think timestamp:  Philo 2 eating timestamp:  Philo 2 sleep timestamp:  Philo 2 think timestamp: 
+
+-- Death Tests --
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+2 100 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+3 210 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+3 61 60 60 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+4 190 100 100 5: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+5 90 60 60 3: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+10 199 100 100 10: Timestamp error: Non numerical
+	Time of death:  Last meal: 0
+
+---- TRACE ENDS ----
+1 100 150 150 10: Timestamp error: Non numerical
+	Simulation start:  Death: 
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+2 130 60 60 4: Philosopher died
+	
+
+2 300 100 100 4: Philosopher died
+	
+
+2 300 100 100 5: Philosopher died
+	
+
+3 200 65 65 5: Philosopher died
+	
+
+3 310 100 200 5: Philosopher died
+	
+
+4 210 100 100 10: Philosopher died
+	
+
+4 410 200 200 10: Philosopher died
+	
+
+4 600 200 200 5: Philosopher died
+	
+
+5 610 200 200 5: Philosopher died
+	
+
+5 600 100 200 5: Philosopher died
+	
+
+5 800 200 200 7: Philosopher died
+	
+
+5 300 60 60 15: Philosopher died
+	
+
+10 500 100 100 50: Philosopher died
+	
+
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----
+
+============================================================
+
+----- TRACE BEGINS -----
+
+-- Basic Error Tests --
+
+-- One Philosopher Tests --
+
+-- No Death Tests --
+
+-- Death Tests --
+
+---- TRACE ENDS ----

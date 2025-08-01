@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:14:29 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/31 21:01:52 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/01 13:23:04 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void *death_check(void *arg)
 			pthread_mutex_unlock(&data->death_lock);
 			i++;
 		}
-		usleep(1000); // Slightly higher to reduce CPU usage
+		usleep(100); // Slightly higher to reduce CPU usage
 	}
 	return NULL;
 }
@@ -76,8 +76,8 @@ void *death_check(void *arg)
 // 		while (i < data->num_philos)
 // 		{
 // 			pthread_mutex_lock(&data->death_lock);
-// 			time_since_meal = get_time_ms() - data->philos[i].last_meal_time; // CHANGE NAME cur_time
-// 			//printf("XXXX%lld \n", time_since_meal);
+// 			time_since_meal = get_time_ms() - data->philos[i].last_meal_time;
+//
 // 			if (data->num_full == data->num_philos)
 // 			{
 // 				//pthread_mutex_lock(&data->death_lock);

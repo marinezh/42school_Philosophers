@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/01 02:51:44 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/01 17:03:06 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void print_status(t_philo *philo, const char *msg)
 	{
 		pthread_mutex_lock(&philo->data->print_lock);
 		printf("%lld %d %s\n", timestamp, philo->id + 1, msg);
+		//printf("%lld %d has taken fork %d (%s)\n", timestamp, philo->id + 1, philo->id, side);
 		pthread_mutex_unlock(&philo->data->print_lock);
 	}  // Only print if simulation is still running
 }
@@ -49,86 +50,161 @@ int is_alive(t_data *data)
 // 			usleep(100); // Let other threads move — reduce fork contention
 // 	}
 // }
-void check_starvation_delay(t_philo *philo)
+
+void log_fork_action(t_philo *philo, t_fork *fork, const char *side, const char *action)
 {
-	long long current_time = get_time_ms();
-	long long time_since_last_meal = current_time - philo->last_meal_time;
-	long long time_left = philo->data->time_to_die - time_since_last_meal;
-	
-	// If this philosopher is about to die (less than 20ms margin)
-	// if (time_left < 20)
-	// {
-	//     // Don't delay, try to eat immediately
-	//     return;
-	// }
-	
-	// If this philosopher has plenty of time left (more than half time_to_die)
-	// if (time_left > philo->data->time_to_die / 2)
-	// {
-	//     // Give a longer delay to let others eat first
-	//     usleep(2000); // 2ms delay
-	// }
-	// // For philosophers in the middle range, give a shorter delay
-	// else if (time_left > philo->data->time_to_eat * 2)
-	// {
-	//     usleep(1000); // 1ms delay
-	// }
-	if (time_left > philo->data->time_to_eat * 2)
-		ft_usleep(100); // Keep it short
+	long long timestamp = get_time_ms() - philo->data->start_time;
+	if (is_alive(philo->data))
+	{
+		pthread_mutex_lock(&philo->data->print_lock);
+		printf("%lld %d %s fork %d (%s)\n", timestamp, philo->id + 1, action, fork->id, side);
+		pthread_mutex_unlock(&philo->data->print_lock);
+	}
 }
+
 void *eat(t_philo *philo)
 {
 	if (philo->data->must_eat > 0 && philo->meals_eaten >= philo->data->must_eat)
 		return NULL;
-	
+
+	// Lock forks based on philosopher ID parity
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(&philo->left_fork->lock);
+		//log_fork_action(philo, philo->left_fork, "left", "has taken");
 		print_status(philo, "has taken a fork");
+		if (!is_alive(philo->data))
+		{
+			pthread_mutex_unlock(&philo->left_fork->lock);
+			//log_fork_action(philo, philo->left_fork, "left", "has released");
+			return NULL;
+		}
+
 		pthread_mutex_lock(&philo->right_fork->lock);
+		//log_fork_action(philo, philo->right_fork, "right", "has taken");
 		print_status(philo, "has taken a fork");
+		
 	}
 	else
 	{
 		pthread_mutex_lock(&philo->right_fork->lock);
+		//log_fork_action(philo, philo->right_fork, "right", "has taken");
 		print_status(philo, "has taken a fork");
+
+		if (!is_alive(philo->data))
+		{
+			pthread_mutex_unlock(&philo->right_fork->lock);
+			//log_fork_action(philo, philo->right_fork, "right", "has released");
+			return NULL;
+		}
+
 		pthread_mutex_lock(&philo->left_fork->lock);
+		//log_fork_action(philo, philo->left_fork, "left", "has taken");
 		print_status(philo, "has taken a fork");
 	}
+
+	// Final safety check before eating
 	if (!is_alive(philo->data))
 	{
 		pthread_mutex_unlock(&philo->left_fork->lock);
+		//log_fork_action(philo, philo->left_fork, "left", "has released");
+
 		pthread_mutex_unlock(&philo->right_fork->lock);
+		//log_fork_action(philo, philo->right_fork, "right", "has released");
 		return NULL;
 	}
-	// pthread_mutex_lock(&philo->left_fork->lock);
-	// print_status(philo, "has taken a fork");
-	// pthread_mutex_lock(&philo->right_fork->lock);
-	// print_status(philo, "has taken a fork");
 
+	// Update meal tracking
 	pthread_mutex_lock(&philo->data->death_lock);
 	philo->last_meal_time = get_time_ms();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->data->death_lock);
-	// TO DO : CHECK if philo dies what next, do i need to unluck fork
+
 	print_status(philo, "is eating");
-	//ft_usleep(philo->data->time_to_eat);
 	ft_dreaming(philo->data, philo->data->time_to_eat);
-	
+
+	// Release forks after eating
 	pthread_mutex_unlock(&philo->left_fork->lock);
+	//log_fork_action(philo, philo->left_fork, "left", "has released");
 	pthread_mutex_unlock(&philo->right_fork->lock);
-	if (philo->data->must_eat > 0)
+	//log_fork_action(philo, philo->right_fork, "right", "has released");
+
+	// Mark philosopher as full if required
+	if (philo->data->must_eat > 0 && philo->meals_eaten == philo->data->must_eat)
 	{
-		if (philo->data->must_eat == philo->meals_eaten)
-		{
-			pthread_mutex_lock(&philo->data->death_lock);
-			philo->data->num_full++;
-			pthread_mutex_unlock(&philo->data->death_lock);
-			//return NULL;
-		}
+		pthread_mutex_lock(&philo->data->death_lock);
+		philo->data->num_full++;
+		pthread_mutex_unlock(&philo->data->death_lock);
 	}
+
 	return NULL;
 }
+
+// void *eat(t_philo *philo)
+// {
+// 	if (philo->data->must_eat > 0 && philo->meals_eaten >= philo->data->must_eat)
+// 		return NULL;
+
+// 	// Lock order depends on philosopher ID
+// 	if (philo->id % 2 == 0)
+// 	{
+// 		pthread_mutex_lock(&philo->left_fork->lock);
+// 		print_status(philo, "has taken the left fork");
+// 		if (!is_alive(philo->data))
+// 		{
+// 			pthread_mutex_unlock(&philo->left_fork->lock);
+// 			return NULL;
+// 		}
+// 		pthread_mutex_lock(&philo->right_fork->lock);
+// 		print_status(philo, "has taken the right fork");
+// 	}
+// 	else
+// 	{
+// 		pthread_mutex_lock(&philo->right_fork->lock);
+// 		print_status(philo, "has taken the right fork");
+// 		if (!is_alive(philo->data))
+// 		{
+// 			pthread_mutex_unlock(&philo->right_fork->lock);
+// 			return NULL;
+// 		}
+// 		pthread_mutex_lock(&philo->left_fork->lock);
+// 		print_status(philo, "has taken the left fork");
+// 	}
+
+// 	// Final check before eating
+// 	if (!is_alive(philo->data))
+// 	{
+// 		pthread_mutex_unlock(&philo->left_fork->lock);
+// 		print_status(philo, "released the left fork");
+// 		pthread_mutex_unlock(&philo->right_fork->lock);
+// 		print_status(philo, "released the right fork");
+// 		return NULL;
+// 	}
+
+// 	// Safe to update meal time
+// 	pthread_mutex_lock(&philo->data->death_lock);
+// 	philo->last_meal_time = get_time_ms();
+// 	philo->meals_eaten++;
+// 	pthread_mutex_unlock(&philo->data->death_lock);
+
+// 	print_status(philo, "is eating");
+// 	ft_dreaming(philo->data, philo->data->time_to_eat);
+
+// 	// Release forks after eating
+// 	pthread_mutex_unlock(&philo->left_fork->lock);
+// 	print_status(philo, "released the left fork");
+// 	pthread_mutex_unlock(&philo->right_fork->lock);
+// 	print_status(philo, "released the right fork");
+
+// 	// Optional: track full philosophers
+// 	if (philo->data->must_eat > 0 && philo->meals_eaten == philo->data->must_eat)
+// 	{
+// 		pthread_mutex_lock(&philo->data->death_lock);
+// 		philo->data->num_full++;
+// 		pthread_mutex_unlock(&philo->data->death_lock);
+// 	}
+// 	return NULL;
+// }
 
 void run_one_philo(t_philo *philo)
 {
@@ -137,17 +213,6 @@ void run_one_philo(t_philo *philo)
 	pthread_mutex_unlock(&philo->right_fork->lock);
 	ft_usleep(philo->data->time_to_die + 10);
 }
-// void	check_time_for_odd(t_philo *philo)
-// {
-// 	size_t	diff;
-
-// 	if (philo->ph_id % 2 == 1)
-// 	{
-// 		diff = philo->t_next_meal - get_time();
-// 		if (diff > 0)
-// 			ft_usleep(1, philo->arg_info);
-// 	}
-// }
 
 void	*philo_routine(void *arg)
 {
@@ -160,23 +225,9 @@ void	*philo_routine(void *arg)
 	}
 	//  if (philo->id % 2 == 0)
 	//  	ft_usleep(500);
-	if (philo->id % 2 == 1)
-		ft_usleep(philo->data->time_to_eat / 2);  // Delay half the eating time
+	// if (philo->id % 2 == 1)
+	// 	ft_usleep(philo->data->time_to_eat / 2);  // Delay half the eating time
 
-	check_starvation_delay(philo);
-	// while (is_alive(philo->data))
-	// {
-	// 	if (is_alive(philo->data))
-	// 		eat(philo);
-		
-	// 	if (is_alive(philo->data))
-	// 	{
-	// 		print_status(philo, "is sleeping");
-	// 		//ft_usleep(philo->data->time_to_sleep);
-	// 		ft_dreaming(philo->data, philo->data->time_to_sleep);
-	// 		print_status(philo, "is thinking");
-	// 	}
-	// }
 	while (is_alive(philo->data))
 	{
 		//check_starvation_delay(philo);
@@ -192,6 +243,22 @@ void	*philo_routine(void *arg)
 		print_status(philo, "is sleeping");
 		ft_dreaming(philo->data, philo->data->time_to_sleep);
 		print_status(philo, "is thinking");
+		ft_dreaming(philo->data, 5);
 	}
 	return NULL;
+}
+
+void check_starvation_delay(t_philo *philo)
+{
+	long long current_time = get_time_ms();
+	long long time_since_last_meal = current_time - philo->last_meal_time;
+	long long time_left = philo->data->time_to_die - time_since_last_meal;
+	
+	if (philo->id % 2 == 1)
+	{
+		if (time_left > philo->data->time_to_eat * 2)
+		{
+			usleep(1); // 1ms delay
+		}
+	}
 }
