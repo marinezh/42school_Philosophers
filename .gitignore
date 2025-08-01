@@ -1,2 +1,5 @@
 *.o
 log
+philo_trace
+.DS_Store
+.vscode/
