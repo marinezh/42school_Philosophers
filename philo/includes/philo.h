@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/31 22:17:35 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/01 19:28:08 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_fork
 typedef struct s_philo
 {
 	int				id;
-	int				meals_eaten;
+	int				meals_ctn;
 	// int 			is_full;
 	long long		last_meal_time;
 	pthread_t		thread;
@@ -50,23 +50,30 @@ typedef struct s_data
 	int				is_dead; //to check if we have somebody alrady died 1 - dead, 0 - alive
 	long long		start_time;
 	t_fork			*forks;
+	t_philo			*philos;
 	pthread_mutex_t	print_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	death_lock;
-	t_philo			*philos;
 	pthread_t		watcher;
 	// int				simulation_running;
 }					t_data;
+
+void	*run_watcher(void *arg);
+
+void	print_status(t_philo *philo, const char *msg);
+void	print_death_status(t_philo *philo, const char *msg);
+
+
 
 int	ft_isdigit(int c);
 int	parse_arguments(int ac, char **av, t_data *data);
 int	is_valid_input(char *str);
 long long	get_time_ms(void);
 void	ft_usleep(int ms);
-void	*death_check(void *arg);
+
 int is_alive(t_data *data);
 void ft_dreaming(t_data *data, int ms);
-void	*death_check(void *arg);
+
 void	check_starvation_delay(t_philo *philo);
 
 

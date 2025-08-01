@@ -6,24 +6,13 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/01 17:03:06 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/01 19:23:31 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void print_status(t_philo *philo, const char *msg)
-{
-	long long timestamp = get_time_ms() - philo->data->start_time;
-	
-	if (is_alive(philo->data))
-	{
-		pthread_mutex_lock(&philo->data->print_lock);
-		printf("%lld %d %s\n", timestamp, philo->id + 1, msg);
-		//printf("%lld %d has taken fork %d (%s)\n", timestamp, philo->id + 1, philo->id, side);
-		pthread_mutex_unlock(&philo->data->print_lock);
-	}  // Only print if simulation is still running
-}
+
 
 int is_alive(t_data *data)
 {
@@ -64,7 +53,7 @@ void log_fork_action(t_philo *philo, t_fork *fork, const char *side, const char 
 
 void *eat(t_philo *philo)
 {
-	if (philo->data->must_eat > 0 && philo->meals_eaten >= philo->data->must_eat)
+	if (philo->data->must_eat > 0 && philo->meals_ctn >= philo->data->must_eat)
 		return NULL;
 
 	// Lock forks based on philosopher ID parity
@@ -117,7 +106,7 @@ void *eat(t_philo *philo)
 	// Update meal tracking
 	pthread_mutex_lock(&philo->data->death_lock);
 	philo->last_meal_time = get_time_ms();
-	philo->meals_eaten++;
+	philo->meals_ctn++;
 	pthread_mutex_unlock(&philo->data->death_lock);
 
 	print_status(philo, "is eating");
@@ -130,7 +119,7 @@ void *eat(t_philo *philo)
 	//log_fork_action(philo, philo->right_fork, "right", "has released");
 
 	// Mark philosopher as full if required
-	if (philo->data->must_eat > 0 && philo->meals_eaten == philo->data->must_eat)
+	if (philo->data->must_eat > 0 && philo->meals_ctn == philo->data->must_eat)
 	{
 		pthread_mutex_lock(&philo->data->death_lock);
 		philo->data->num_full++;
