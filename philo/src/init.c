@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:42:32 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/01 18:58:23 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/01 20:30:37 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ int	init_data(t_data *data)
 		cleanup_resources(data, 2);
 		return (0);
 	}
-
 	if (!init_philos(data))
 	{
 		cleanup_resources(data, 3);

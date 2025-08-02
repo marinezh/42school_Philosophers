@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/01 19:28:08 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 18:09:29 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_data
 	pthread_t		watcher;
 	// int				simulation_running;
 }					t_data;
+
+int	ft_atoi(const char *str);
 
 void	*run_watcher(void *arg);
 

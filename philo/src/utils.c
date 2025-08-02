@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:40:19 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/01 17:25:39 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 17:18:10 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,29 @@ void ft_dreaming(t_data *data, int ms)
 		// Sleep in small chunks to be able to check is_alive frequently
 		usleep(100);  // 0.5ms intervals for responsiveness
 	}
+}
+int	ft_atoi(const char *str)
+{
+	int			i;
+	long long	nbr;
+	int			minus;
+
+	i = 0;
+	nbr = 0;
+	minus = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		minus = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nbr = nbr * 10 + (str[i] - '0');
+		i++;
+	}
+	return (nbr * minus);
 }

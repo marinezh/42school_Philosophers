@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/01 19:23:31 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 16:09:06 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,7 @@ int is_alive(t_data *data)
 	pthread_mutex_unlock(&data->death_lock);
 	return 1;
 }
-// void	check_starvation_delay(t_philo *philo)
-// {
-// 	long long time_now;
-// 	long long time_left;
 
-// 	if (philo->id % 2 == 1) // or even, depending on how your forks behave
-// 	{
-// 		time_now = get_time_ms();
-// 		time_left = (philo->last_meal_time + philo->data->time_to_die) - time_now;
-
-// 		if (time_left > 0 && time_left < 10) // Close to starvation window
-// 			usleep(100); // Let other threads move — reduce fork contention
-// 	}
-// }
-
-void log_fork_action(t_philo *philo, t_fork *fork, const char *side, const char *action)
-{
-	long long timestamp = get_time_ms() - philo->data->start_time;
-	if (is_alive(philo->data))
-	{
-		pthread_mutex_lock(&philo->data->print_lock);
-		printf("%lld %d %s fork %d (%s)\n", timestamp, philo->id + 1, action, fork->id, side);
-		pthread_mutex_unlock(&philo->data->print_lock);
-	}
-}
 
 void *eat(t_philo *philo)
 {
