@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/02 18:09:29 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 18:22:04 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,8 @@ void	print_death_status(t_philo *philo, const char *msg);
 
 
 
-int	ft_isdigit(int c);
 int	parse_arguments(int ac, char **av, t_data *data);
-int	is_valid_input(char *str);
+
 long long	get_time_ms(void);
 void	ft_usleep(int ms);
 

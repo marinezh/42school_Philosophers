@@ -6,13 +6,21 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:21:12 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/02 18:16:33 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 18:22:22 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_overflow(char *str)
+static int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
+
+static int	check_overflow(char *str)
 {
 	long	result;
 	int		i;
@@ -29,7 +37,7 @@ int	check_overflow(char *str)
 	return (1);
 }
 
-int	is_valid_input(char *str)
+static int	is_valid_input(char *str)
 {
 	int	i;
 
@@ -53,7 +61,7 @@ int	is_valid_input(char *str)
 	return (1);
 }
 
-int	input_check(int ac, t_data *data)
+static int	input_check(int ac, t_data *data)
 {
 	if (data->num_philos <= 0)
 	{
