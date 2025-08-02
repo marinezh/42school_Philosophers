@@ -6,12 +6,11 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:40:19 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/02 18:21:32 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 18:56:44 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 long long	get_time_ms(void)
 {

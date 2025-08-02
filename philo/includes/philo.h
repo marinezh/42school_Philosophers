@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/02 18:22:04 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 19:42:56 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 #include <unistd.h>
 # include <sys/time.h>
 
+# define CLEANUP_PRINT		1
+# define CLEANUP_DEATH		2
+# define CLEANUP_FORKS		3
+# define CLEANUP_PHILOS		4
 # define USAGE "./philo philo_number time_to_die time_to_eat time_to\
 _sleep [number_of_meals]"
 
@@ -31,7 +35,6 @@ typedef struct s_philo
 {
 	int				id;
 	int				meals_ctn;
-	// int 			is_full;
 	long long		last_meal_time;
 	pthread_t		thread;
 	t_fork			*left_fork;
@@ -62,6 +65,7 @@ int	ft_atoi(const char *str);
 
 void	*run_watcher(void *arg);
 
+void	print_err_msg(char *msg);
 void	print_status(t_philo *philo, const char *msg);
 void	print_death_status(t_philo *philo, const char *msg);
 

@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 16:21:12 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/02 18:22:22 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 19:14:15 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ static int	is_valid_input(char *str)
 	{
 		if (!ft_isdigit(str[i]))
 		{
-			printf("Error: Non-digit character found in input\n");
+			print_err_msg("Non-digit character found in input");
 			return (0);
 		}
 		i++;
 	}
 	if (!check_overflow(str))
 	{
-		printf("Error: Number too large, would cause integer overflow\n");
+		print_err_msg("Number too large, would cause integer overflow");
 		return (0);
 	}
 	return (1);
@@ -65,17 +65,17 @@ static int	input_check(int ac, t_data *data)
 {
 	if (data->num_philos <= 0)
 	{
-		printf("Error: Need at least one philosopher\n");
+		print_err_msg("Need at least one philosopher");
 		return (0);
 	}
 	if (data->time_to_die <= 0 || data->time_to_eat <= 0)
 	{
-		printf("Error: Time values must be positive\n");
+		print_err_msg("Time values must be positive");
 		return (0);
 	}
 	if (ac == 6 && data->must_eat <= 0)
 	{
-		printf("Error: Number of meals must be positive\n");
+		print_err_msg("Number of meals must be positive");
 		return (0);
 	}
 	return (1);
@@ -90,7 +90,7 @@ int	parse_arguments(int ac, char **av, t_data *data)
 	{
 		if (!is_valid_input(av[i]))
 		{
-			printf("Error: Invalid argument: %s\n", av[i]);
+			printf("Invalid argument: %s\n", av[i]);
 			return (0);
 		}
 		i++;
