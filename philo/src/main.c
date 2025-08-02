@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:14:53 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/07/30 14:19:11 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 20:28:38 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 		}
 		i++;
 	}
-	if(pthread_create(&data.watcher, NULL, death_check, &data) != 0)
+	if(pthread_create(&data.watcher, NULL, run_watcher, &data) != 0)
 	{
 		pthread_destr(&data, data.num_philos);
 		printf("thread creation failed\n");
@@ -71,8 +71,5 @@ int	main(int ac, char **av)
 		i++;
 	}
 	(pthread_join(data.watcher, NULL));
-	//printf("////////////////////////\n");
-	//print_philo_data(&data);
-	//free(data);
 	return (0);
 }
