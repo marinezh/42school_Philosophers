@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:14:29 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/01 20:25:00 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/02 00:07:26 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	watch_meals(t_data *data)
 {
-	while (1)
-	{
+	// while (1)
+	// {
 		pthread_mutex_lock(&data->death_lock);
 		if (data->must_eat > 0 && data->num_full == data->num_philos)
 		{
@@ -24,8 +24,8 @@ static int	watch_meals(t_data *data)
 			return (1);
 		}
 		pthread_mutex_unlock(&data->death_lock);
-		break ;
-	}
+		// break ;
+	// }
 	return (0);
 }
 
@@ -33,8 +33,8 @@ static int	watch_death(t_data *data, int i)
 {
 	long long	time_since_meal;
 
-	while (1)
-	{
+	// while (1)
+	// {
 		pthread_mutex_lock(&data->death_lock);
 		if (data->must_eat > 0 && data->philos[i].meals_ctn >= data->must_eat)
 		{
@@ -50,8 +50,8 @@ static int	watch_death(t_data *data, int i)
 			return (1);
 		}
 		pthread_mutex_unlock(&data->death_lock);
-		break ;
-	}
+		// break ;
+	// }
 	return (0);
 }
 void	*run_watcher(void *arg)
