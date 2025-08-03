@@ -2,13 +2,22 @@
 
 https://medium.com/@denaelgammal/dining-philosophers-problem-42-project-guide-mandatory-part-a20fb8dc530e
 
-pthread_create(thread, attr, routine, arg);
+no dies (Jules)
+./philo 2 130 60 60 4
+./philo 2 300 100 100 4
+./philo 2 300 100 100 5
+./philo 4 210 100 100 10
+./philo 4 410 200 200 10
+./philo 4 600 200 200 5
+./philo 10 500 100 100 50
+./philo 200 65 65 5
+./philo 300 60 60 15
 
-(pthread_create(&data->philos[i].thread, NULL, routine,
-				&data->philos[i]) != 0) - m
-
-(pthread_create(&(party->philosophers[i].thread), NULL,
-		philosopher_routine, (void *)&(party->philosophers[i])) != 0)
+./philo 3 310 100 200 5
+./philo 5 610 200 200 5
+./philo 5 600 100 200 5
+./philo 5 800 200 200 7
+./philo 11 900 150 90 20
 
 no dies 
 ./philo 5 600 150 150 
@@ -26,8 +35,8 @@ no dies
 ./philo 2 150 60 60 
 ./philo 4 405 200 200 
 ./philo 4 130 60 60 
-./philo 100 410 200 200 
-./philo 100 130 60 60 
+./philo 100 410 200 200 !!!!!!???
+./philo 100 130 60 60  !!!!!
 
 no dies 
 ./philo 4 410 200 200 12 
@@ -46,3 +55,8 @@ test case from eval sheet
 4 410 200 200
 
 4 310 200 100 one should die
+
+spesial cases :
+5 600 200 100
+
+200 400 100 100 frozen ???
