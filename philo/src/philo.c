@@ -6,90 +6,13 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/02 20:27:51 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/04 22:26:45 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-int is_alive(t_data *data)
-{
-	pthread_mutex_lock(&data->death_lock);
-	if (data->is_dead == 1)
-	{
-		pthread_mutex_unlock(&data->death_lock);
-		return 0;
-	}
-	pthread_mutex_unlock(&data->death_lock);
-	return 1;
-}
-
-int forks_for_even(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->left_fork->lock);
-	print_status(philo, "has taken a fork");
-	if (!is_alive(philo->data))
-	{
-		pthread_mutex_unlock(&philo->left_fork->lock);
-		return (1);
-	}
-	pthread_mutex_lock(&philo->right_fork->lock);
-	print_status(philo, "has taken a fork");
-	return (0);
-}
-
-int forks_for_odd(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->right_fork->lock);
-	print_status(philo, "has taken a fork");
-	if (!is_alive(philo->data))
-	{
-		pthread_mutex_unlock(&philo->right_fork->lock);
-		return (1);
-	}
-	pthread_mutex_lock(&philo->left_fork->lock);
-	print_status(philo, "has taken a fork");
-	return (0);
-}
-int meals_eaten(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->data->death_lock);
-	philo->data->num_full++;
-	pthread_mutex_unlock(&philo->data->death_lock);
-	return (0);
-}
-
-void *eat(t_philo *philo)
-{
-	int forks_result;
-	
-	if (philo->data->must_eat > 0 && philo->meals_ctn >= philo->data->must_eat)
-		return NULL;
-	if (philo->id % 2 == 0)
-		forks_result = forks_for_even(philo);
-	else
-		forks_result = forks_for_odd(philo);
-	if (forks_result != 0 || !is_alive(philo->data))
-	{
-		pthread_mutex_unlock(&philo->left_fork->lock);
-		pthread_mutex_unlock(&philo->right_fork->lock);
-		return NULL;
-	}
-	pthread_mutex_lock(&philo->data->death_lock);
-	philo->last_meal_time = get_time_ms();
-	philo->meals_ctn++;
-	pthread_mutex_unlock(&philo->data->death_lock);
-	print_status(philo, "is eating");
-	ft_dreaming(philo->data, philo->data->time_to_eat);
-	pthread_mutex_unlock(&philo->left_fork->lock);
-	pthread_mutex_unlock(&philo->right_fork->lock);
-	if (philo->data->must_eat > 0 && philo->meals_ctn == philo->data->must_eat)
-		meals_eaten(philo);
-	return NULL;
-}
-
-void run_one_philo(t_philo *philo)
+static void	run_one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->right_fork->lock);
 	print_status(philo, "has taken a fork");
@@ -97,47 +20,126 @@ void run_one_philo(t_philo *philo)
 	ft_usleep(philo->data->time_to_die + 10);
 }
 
+static void	*philo_eat(t_philo *philo)
+{
+	int	forks_result;
+	int	locked_left;
+	int	locked_right;
+
+	locked_left = 0;
+	locked_right = 0;
+	if (philo->data->must_eat > 0 && philo->meals_ctn >= philo->data->must_eat)
+		return (NULL);
+	if (philo->id % 2 == 0)
+		forks_result = forks_for_even(philo, &locked_left, &locked_right);
+	else
+		forks_result = forks_for_odd(philo, &locked_left, &locked_right);
+	if (forks_result != 0 || !is_alive(philo->data))
+	{
+		release_locked_forks(philo, locked_left, locked_right);
+		return (NULL);
+	}
+	meal_update(philo);
+	print_status(philo, "is eating");
+	ft_dreaming(philo->data, philo->data->time_to_eat);
+	release_locked_forks(philo, 1, 1);
+	if (philo->data->must_eat > 0 && philo->meals_ctn == philo->data->must_eat)
+		meals_eaten(philo);
+	return (NULL);
+}
+
+/**
+ * philo_sleep - Handles the sleeping state of a philosopher
+ * @philo: Pointer to philosopher structure
+ *
+
+	* This function makes a philo sleep for the specified time_to_sleep dur-n,
+ * but only if the philo will not starve during sleep. It first calculates
+ * the time since the philosopher's last meal, and only allows sleeping if the
+ * philosopher will still have time left before starvation after sleeping.
+ * Safety check prevents philosophers from sleeping when they should be eating.
+ */
+static void	philo_sleep(t_philo *philo)
+{
+	t_data		*data;
+	long long	now;
+	long long	since_meal;
+
+	data = philo->data;
+	now = get_time_ms();
+	since_meal = now - philo->last_meal_time;
+	if (!is_alive(data))
+		return ;
+	if (since_meal + data->time_to_sleep < data->time_to_die)
+	{
+		print_status(philo, "is sleeping");
+		ft_dreaming(data, data->time_to_sleep);
+	}
+}
+
+/**
+ * philo_think - Handles the thinking state of a philosopher
+ * @philo: Pointer to philosopher structure
+ *
+ * This function makes a philosopher think for a short period. The thinking time
+ * is adjusted based on the number of philosophers to optimize performance:
+ * - For larger numbers of philosophers (>50): longer thinking time (100ms)
+ * - For smaller numbers: minimal thinking time (5ms)
+ *
+ * Like sleep, it includes a safety check to ensure the philosopher won't starve
+
+	* during thinking. If the time since the last meal plus thinking 
+ * time would exceed the time_to_die limit,
+ * the philosopher will skip thinking to prioritize eating.
+ */
+
+static void	philo_think(t_philo *philo)
+{
+	int			think_time;
+	t_data		*data;
+	long long	now;
+	long long	since_meal;
+
+	data = philo->data;
+	if (!is_alive(data))
+		return ;
+	if (philo->data->time_to_die - (philo->data->time_to_sleep + philo->data->time_to_eat) < 10)
+		think_time = 0;
+	else if (data->num_philos > 50)
+		think_time = 100;
+	else
+		think_time = 5;
+	now = get_time_ms();
+	since_meal = now - philo->last_meal_time;
+	if (since_meal + think_time < data->time_to_die)
+	{
+		print_status(philo, "is thinking");
+		ft_dreaming(data, think_time);
+	}
+}
+
 void	*philo_routine(void *arg)
 {
-	t_philo	*philo = (t_philo *)arg;
+	t_philo	*philo;
+	t_data	*data;
 
-	if (philo->data->num_philos == 1)
+	philo = (t_philo *)arg;
+	data = philo->data;
+	if (data->num_philos == 1)
 	{
 		run_one_philo(philo);
-		return NULL;
+		return (NULL);
 	}
-	while (is_alive(philo->data))
+	if (philo->id % 2 == 0)
+		usleep(1000);
+	while (is_alive(data))
 	{
-		//check_starvation_delay(philo);
-		if (!is_alive(philo->data))
-			break;
-		eat(philo);
-		if (!is_alive(philo->data))
-			break;
-		print_status(philo, "is sleeping");
-		ft_dreaming(philo->data, philo->data->time_to_sleep);
-		print_status(philo, "is thinking");
-		ft_dreaming(philo->data, 5);
+		if (!is_alive(data))
+			break ;
+		philo_eat(philo);
+		philo_sleep(philo);
+		philo_think(philo);
+		ft_usleep(1 + (philo->id % 5));
 	}
-	return NULL;
+	return (NULL);
 }
-
-void check_starvation_delay(t_philo *philo)
-{
-	long long current_time = get_time_ms();
-	long long time_since_last_meal = current_time - philo->last_meal_time;
-	long long time_left = philo->data->time_to_die - time_since_last_meal;
-	
-	if (philo->id % 2 == 1)
-	{
-		if (time_left > philo->data->time_to_eat * 2)
-		{
-			usleep(1); // 1ms delay
-		}
-	}
-}
-
-//  if (philo->id % 2 == 0)
-	//  	ft_usleep(500);
-	// if (philo->id % 2 == 1)
-	// 	ft_usleep(philo->data->time_to_eat / 2);  // Delay half the eating time
