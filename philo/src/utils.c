@@ -6,11 +6,21 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:40:19 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/03 23:57:19 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/04 20:59:17 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+bool	is_alive(t_data *data)
+{
+	bool	alive;
+
+	pthread_mutex_lock(&data->death_lock);
+	alive = !data->is_dead;
+	pthread_mutex_unlock(&data->death_lock);
+	return (alive);
+}
 
 long long	get_time_ms(void)
 {
@@ -27,56 +37,16 @@ void	ft_usleep(int ms)
 	start = get_time_ms();
 	while (get_time_ms() - start < ms)
 		usleep(100);
-	
 }
 
-// void ft_dreaming(t_data *data, int ms)
-// {
-// 	long long start_time = get_time_ms();
-// 	long long current_time;
-	
-// 	if (ms <= 0)
-// 		return;
-		
-// 	while (is_alive(data))
-// 	{
-// 		current_time = get_time_ms();
-// 		if (current_time - start_time >= ms)
-// 			break;
-			
-// 		// Sleep in small chunks to be able to check is_alive frequently
-// 		usleep(100);  // 0.5ms intervals for responsiveness
-// 	}
-// }
-void ft_dreaming(t_data *data, int duration_ms)
+void	ft_dreaming(t_data *data, int ms)
 {
-	long long start = get_time_ms();
-	long long now;
-	long long elapsed;
+	long long	start;
 
-	while (is_alive(data))
-	{
-		now = get_time_ms();
-		elapsed = now - start;
-
-		if (elapsed >= duration_ms)
-			break;
-
-		// Sleep only the remaining time or a short chunk
-		int sleep_time = duration_ms - elapsed;
-		if (sleep_time > 5)
-			usleep(1000);  // 1ms chunks
-		else
-			usleep(100);   // fine-grained finish
-	}
+	start = get_time_ms();
+	while (is_alive(data) && get_time_ms() - start < ms)
+		usleep(100);
 }
-
-// void ft_dreaming(t_data *data, int ms)
-// {
-// 	long long start = get_time_ms();
-// 	while (is_alive(data) && get_time_ms() - start < ms)
-// 		usleep(500); // Short intervals
-// }
 
 int	ft_atoi(const char *str)
 {
