@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/04 02:10:14 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/04 01:43:21 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,50 @@ void run_one_philo(t_philo *philo)
 	pthread_mutex_unlock(&philo->right_fork->lock);
 	ft_usleep(philo->data->time_to_die + 10);
 }
+int take_forks(t_philo *philo)
+{
+	// Make one philosopher break the circle
+	if (philo->id == philo->data->num_philos - 1)
+	{
+		pthread_mutex_lock(&philo->right_fork->lock);
+		print_status(philo, "has taken a fork");
+		if (!is_alive(philo->data))
+		{
+			pthread_mutex_unlock(&philo->right_fork->lock);
+			return 1;
+		}
+		pthread_mutex_lock(&philo->left_fork->lock);
+		print_status(philo, "has taken a fork");
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->left_fork->lock);
+		print_status(philo, "has taken a fork");
+		if (!is_alive(philo->data))
+		{
+			pthread_mutex_unlock(&philo->left_fork->lock);
+			return 1;
+		}
+		pthread_mutex_lock(&philo->right_fork->lock);
+		print_status(philo, "has taken a fork");
+	}
+	return 0;
+}
+
+void release_forks(t_philo *philo)
+{
+	// Match the order above
+	if (philo->id == philo->data->num_philos - 1)
+	{
+		pthread_mutex_unlock(&philo->left_fork->lock);
+		pthread_mutex_unlock(&philo->right_fork->lock);
+	}
+	else
+	{
+		pthread_mutex_unlock(&philo->right_fork->lock);
+		pthread_mutex_unlock(&philo->left_fork->lock);
+	}
+}
 
 void *philo_eat(t_philo *philo)
 {
@@ -26,10 +70,11 @@ void *philo_eat(t_philo *philo)
 	
 	if (philo->data->must_eat > 0 && philo->meals_ctn >= philo->data->must_eat)
 		return NULL;
-	if (philo->id % 2 == 0)
-		forks_result = forks_for_even(philo);
-	else
-		forks_result = forks_for_odd(philo);
+	// if (philo->id % 2 == 0)
+	// 	forks_result = forks_for_even(philo);
+	// else
+	// 	forks_result = forks_for_odd(philo);
+	forks_result = take_forks(philo);
 	if (forks_result != 0 || !is_alive(philo->data))
 	{
 		release_forks(philo);
@@ -43,23 +88,13 @@ void *philo_eat(t_philo *philo)
 	print_status(philo, "is eating");
 	ft_dreaming(philo->data, philo->data->time_to_eat);
 
-	pthread_mutex_unlock(&philo->left_fork->lock);
-	pthread_mutex_unlock(&philo->right_fork->lock);
-	//release_forks(philo);
+	release_forks(philo);
+	
 	if (philo->data->must_eat > 0 && philo->meals_ctn == philo->data->must_eat)
 		meals_eaten(philo);
 	return NULL;
 }
-/**
- * philo_sleep - Handles the sleeping state of a philosopher
- * @philo: Pointer to philosopher structure
- * 
- * This function makes a philosopher sleep for the specified time_to_sleep duration,
- * but only if the philosopher will not starve during sleep. It first calculates 
- * the time since the philosopher's last meal, and only allows sleeping if the 
- * philosopher will still have time left before starvation after sleeping.
- * Safety check prevents philosophers from sleeping when they should be eating.
- */
+
 void philo_sleep(t_philo *philo)
 {
 	t_data *data = philo->data;
@@ -72,19 +107,7 @@ void philo_sleep(t_philo *philo)
 		ft_dreaming(data, data->time_to_sleep);
 	}
 }
-/**
- * philo_think - Handles the thinking state of a philosopher
- * @philo: Pointer to philosopher structure
- * 
- * This function makes a philosopher think for a short period. The thinking time
- * is adjusted based on the number of philosophers to optimize performance:
- * - For larger numbers of philosophers (>50): longer thinking time (100ms)
- * - For smaller numbers: minimal thinking time (5ms)
- * 
- * Like sleep, it includes a safety check to ensure the philosopher won't starve
- * during thinking. If the time since the last meal plus thinking time would exceed
- * the time_to_die limit, the philosopher will skip thinking to prioritize eating.
- */
+
 void philo_think(t_philo *philo)
 {
 	int think_time;
@@ -127,7 +150,6 @@ void *philo_routine(void *arg)
 		if (!is_alive(data))
 			break;
 		philo_think(philo);
-		ft_usleep(1 + (philo->id % 5)); //This desynchronizes wakeups and prevents everyone from grabbing forks at the same time
 	}
 	return NULL;
 }
