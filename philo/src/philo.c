@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:04:31 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/04 22:26:45 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/05 21:36:16 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ static void	philo_think(t_philo *philo)
 	t_data		*data;
 	long long	now;
 	long long	since_meal;
+	//long long	should_eat = philo->last_meal_time + philo->data->time_to_die;
 
 	data = philo->data;
 	if (!is_alive(data))

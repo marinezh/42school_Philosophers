@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:18:52 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/04 21:15:30 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/05 21:36:53 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int					parse_arguments(int ac, char **av, t_data *data);
 
 // print
 void				print_err_msg(char *msg);
-void				print_status(t_philo *philo, const char *msg);
+void	print_status(t_philo *philo, const char *msg);
+//void				print_status(t_philo *philo, const char *msg, long long timestamp);
 void				print_death_status(t_philo *philo, const char *msg);
 
 // init
@@ -82,12 +83,9 @@ int					ft_atoi(const char *str);
 
 // philo utils
 void				meal_update(t_philo *philo);
-int					forks_for_even(t_philo *philo, int *locked_left,
-						int *locked_right);
-int					forks_for_odd(t_philo *philo, int *locked_left,
-						int *locked_right);
-void				release_locked_forks(t_philo *philo, int locked_left,
-						int locked_right);
+int					forks_for_even(t_philo *philo, int *locked_left, int *locked_right);
+int					forks_for_odd(t_philo *philo, int *locked_left, int *locked_right);
+void				release_locked_forks(t_philo *philo, int locked_left, int locked_right);
 int					meals_eaten(t_philo *philo);
 
 // watcher
@@ -98,5 +96,5 @@ void				*philo_routine(void *arg);
 
 //cleanup
 void				cleanup_resources(t_data *data, int level);
-void				mutex_destroy(t_data *data);
+void				cleanup_simulation(t_data *data);
 void				join_and_cleanup(t_data *data);
