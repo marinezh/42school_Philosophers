@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:14:53 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/04 21:13:31 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:52:12 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ int	main(int ac, char **av)
 		return (1);
 	if (create_philo_threads(&data) != 1)
 	{
-		mutex_destroy(&data);
+		cleanup_simulation(&data);
 		cleanup_resources(&data, CLEANUP_PHILOS);
 		return (1);
 	}
 	if (!create_watcher_thread(&data))
 	{
-		mutex_destroy(&data);
+		cleanup_simulation(&data);
 		cleanup_resources(&data, CLEANUP_PHILOS);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: mzhivoto <mzhivoto@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 21:11:16 by mzhivoto          #+#    #+#             */
-/*   Updated: 2025/08/04 21:13:08 by mzhivoto         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:37:09 by mzhivoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,20 @@ void	cleanup_resources(t_data *data, int level)
 		pthread_mutex_destroy(&data->print_lock);
 }
 
-void	mutex_destroy(t_data *data)
+void	cleanup_simulation(t_data *data)
 {
 	int	j;
 
 	j = 0;
-	pthread_mutex_destroy(&data->death_lock);
-	pthread_mutex_destroy(&data->print_lock);
 	while (j < data->num_philos)
 	{
 		pthread_mutex_destroy(&data->forks[j].lock);
 		j++;
 	}
+	pthread_mutex_destroy(&data->death_lock);
+	pthread_mutex_destroy(&data->print_lock);
+	free(data->forks);
+	free(data->philos);
 }
 
 void	join_and_cleanup(t_data *data)
@@ -63,5 +65,5 @@ void	join_and_cleanup(t_data *data)
 		pthread_join(data->philos[i].thread, NULL);
 		i++;
 	}
-	mutex_destroy(data);
+	cleanup_simulation(data);
 }
